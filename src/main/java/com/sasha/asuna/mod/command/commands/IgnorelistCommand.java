@@ -22,7 +22,7 @@ import com.sasha.simplecmdsys.SimpleCommand;
 import com.sasha.simplecmdsys.SimpleCommandInfo;
 
 import static com.sasha.asuna.mod.AsunaMod.logMsg;
-import static com.sasha.asuna.mod.feature.impl.ClientIgnoreFeature.ignorelist;
+import static com.sasha.asuna.mod.feature.impl.chat.ClientIgnoreFeature.ignorelist;
 
 /**
  * Created by Sasha on 09/08/2018 at 3:28 PM

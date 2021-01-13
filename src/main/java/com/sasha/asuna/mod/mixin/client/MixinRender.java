@@ -18,7 +18,7 @@
 
 package com.sasha.asuna.mod.mixin.client;
 
-import com.sasha.asuna.mod.feature.impl.NamePlatesFeature;
+import com.sasha.asuna.mod.feature.impl.render.NamePlatesFeature;
 import com.sasha.asuna.mod.misc.Manager;
 import net.minecraft.client.entity.EntityOtherPlayerMP;
 import net.minecraft.client.gui.FontRenderer;

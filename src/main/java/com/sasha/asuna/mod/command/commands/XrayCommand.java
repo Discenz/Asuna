@@ -19,7 +19,7 @@
 package com.sasha.asuna.mod.command.commands;
 
 import com.sasha.asuna.mod.AsunaMod;
-import com.sasha.asuna.mod.feature.impl.XrayFeature;
+import com.sasha.asuna.mod.feature.impl.render.XrayFeature;
 import com.sasha.asuna.mod.misc.Manager;
 import com.sasha.simplecmdsys.SimpleCommand;
 import com.sasha.simplecmdsys.SimpleCommandInfo;

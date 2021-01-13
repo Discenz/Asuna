@@ -18,7 +18,7 @@
 
 package com.sasha.asuna.mod.mixin.client;
 
-import com.sasha.asuna.mod.feature.impl.EntitySpeedFeature;
+import com.sasha.asuna.mod.feature.impl.movement.EntitySpeedFeature;
 import com.sasha.asuna.mod.misc.Manager;
 import net.minecraft.entity.passive.EntityLlama;
 import org.spongepowered.asm.mixin.Mixin;

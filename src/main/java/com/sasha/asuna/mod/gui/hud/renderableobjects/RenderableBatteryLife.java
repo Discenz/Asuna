@@ -21,7 +21,7 @@ package com.sasha.asuna.mod.gui.hud.renderableobjects;
 
 import com.sasha.asuna.mod.AsunaMod;
 import com.sasha.asuna.mod.events.asuna.AsunaBatteryLevelChangedEvent;
-import com.sasha.asuna.mod.feature.impl.BatteryLifeRenderableFeature;
+import com.sasha.asuna.mod.feature.impl.gui.BatteryLifeRenderableFeature;
 import com.sasha.asuna.mod.gui.hud.AsunaHUD;
 import com.sasha.asuna.mod.gui.hud.RenderableObject;
 import com.sasha.asuna.mod.gui.hud.ScreenCornerPos;

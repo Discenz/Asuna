@@ -25,7 +25,7 @@ import baritone.api.pathing.goals.GoalBlock;
 import baritone.api.pathing.goals.GoalRunAway;
 import baritone.api.pathing.goals.GoalXZ;
 import com.sasha.asuna.mod.AsunaMod;
-import com.sasha.asuna.mod.feature.impl.JesusFeature;
+import com.sasha.asuna.mod.feature.impl.movement.JesusFeature;
 import com.sasha.asuna.mod.misc.Manager;
 import com.sasha.asuna.mod.waypoint.Waypoint;
 import com.sasha.simplecmdsys.SimpleCommand;

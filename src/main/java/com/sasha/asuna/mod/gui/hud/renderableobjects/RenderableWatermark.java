@@ -20,7 +20,7 @@ package com.sasha.asuna.mod.gui.hud.renderableobjects;
 
 
 import com.sasha.asuna.mod.AsunaMod;
-import com.sasha.asuna.mod.feature.impl.WatermarkRenderableFeature;
+import com.sasha.asuna.mod.feature.impl.gui.WatermarkRenderableFeature;
 import com.sasha.asuna.mod.gui.hud.AsunaHUD;
 import com.sasha.asuna.mod.gui.hud.RenderableObject;
 import com.sasha.asuna.mod.gui.hud.ScreenCornerPos;

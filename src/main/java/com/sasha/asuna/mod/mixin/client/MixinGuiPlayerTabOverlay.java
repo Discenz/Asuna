@@ -19,9 +19,9 @@
 package com.sasha.asuna.mod.mixin.client;
 
 import com.sasha.asuna.mod.AsunaMod;
-import com.sasha.asuna.mod.feature.impl.ClientIgnoreFeature;
-import com.sasha.asuna.mod.feature.impl.ExtendedTablistFeature;
-import com.sasha.asuna.mod.feature.impl.NameProtectFeature;
+import com.sasha.asuna.mod.feature.impl.chat.ClientIgnoreFeature;
+import com.sasha.asuna.mod.feature.impl.render.ExtendedTablistFeature;
+import com.sasha.asuna.mod.feature.impl.render.NameProtectFeature;
 import com.sasha.asuna.mod.misc.Manager;
 import net.minecraft.client.gui.GuiPlayerTabOverlay;
 import net.minecraft.client.network.NetHandlerPlayClient;

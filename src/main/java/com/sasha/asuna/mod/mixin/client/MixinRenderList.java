@@ -18,7 +18,7 @@
 
 package com.sasha.asuna.mod.mixin.client;
 
-import com.sasha.asuna.mod.feature.impl.WireframeFeature;
+import com.sasha.asuna.mod.feature.impl.render.WireframeFeature;
 import com.sasha.asuna.mod.misc.Manager;
 import net.minecraft.client.renderer.RenderList;
 import net.minecraft.util.BlockRenderLayer;

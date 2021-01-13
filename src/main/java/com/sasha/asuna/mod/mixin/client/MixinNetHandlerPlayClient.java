@@ -23,7 +23,7 @@ import com.sasha.asuna.mod.events.client.ClientEnderPearlSpawnEvent;
 import com.sasha.asuna.mod.events.client.ClientItemSpawnEvent;
 import com.sasha.asuna.mod.events.playerclient.PlayerKnockbackEvent;
 import com.sasha.asuna.mod.events.server.ServerLoadChunkEvent;
-import com.sasha.asuna.mod.feature.impl.AutoReconnectFeature;
+import com.sasha.asuna.mod.feature.impl.misc.AutoReconnectFeature;
 import com.sasha.asuna.mod.gui.GuiDisconnectedAuto;
 import com.sasha.asuna.mod.misc.Manager;
 import net.minecraft.client.Minecraft;

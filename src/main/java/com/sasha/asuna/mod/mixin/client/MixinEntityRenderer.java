@@ -18,7 +18,7 @@
 
 package com.sasha.asuna.mod.mixin.client;
 
-import com.sasha.asuna.mod.feature.impl.*;
+import com.sasha.asuna.mod.feature.impl.render.*;
 import com.sasha.asuna.mod.misc.Manager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;

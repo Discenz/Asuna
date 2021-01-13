@@ -18,7 +18,7 @@
 
 package com.sasha.asuna.mod.mixin.client;
 
-import com.sasha.asuna.mod.feature.impl.FreecamFeature;
+import com.sasha.asuna.mod.feature.impl.movement.FreecamFeature;
 import com.sasha.asuna.mod.misc.Manager;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import org.spongepowered.asm.mixin.Mixin;

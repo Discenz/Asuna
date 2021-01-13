@@ -1,7 +1,7 @@
 package com.sasha.asuna.mod.mixin.client;
 
 import com.sasha.asuna.mod.AsunaMod;
-import com.sasha.asuna.mod.feature.impl.InventoryMoveFeature;
+import com.sasha.asuna.mod.feature.impl.movement.InventoryMoveFeature;
 import com.sasha.asuna.mod.misc.Manager;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.settings.KeyBinding;

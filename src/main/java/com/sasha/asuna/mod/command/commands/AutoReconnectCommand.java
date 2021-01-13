@@ -19,7 +19,7 @@
 package com.sasha.asuna.mod.command.commands;
 
 import com.sasha.asuna.mod.AsunaMod;
-import com.sasha.asuna.mod.feature.impl.AutoReconnectFeature;
+import com.sasha.asuna.mod.feature.impl.misc.AutoReconnectFeature;
 import com.sasha.simplecmdsys.SimpleCommand;
 import com.sasha.simplecmdsys.SimpleCommandInfo;
 

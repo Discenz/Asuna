@@ -21,7 +21,7 @@ package com.sasha.asuna.mod.gui.hud.renderableobjects;
 
 import com.sasha.asuna.mod.AsunaMod;
 import com.sasha.asuna.mod.feature.IAsunaTogglableFeature;
-import com.sasha.asuna.mod.feature.impl.FeaturelistRenderableFeature;
+import com.sasha.asuna.mod.feature.impl.gui.FeaturelistRenderableFeature;
 import com.sasha.asuna.mod.gui.hud.RenderableObject;
 import com.sasha.asuna.mod.gui.hud.ScreenCornerPos;
 import com.sasha.asuna.mod.misc.Manager;

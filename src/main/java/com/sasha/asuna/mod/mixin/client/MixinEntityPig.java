@@ -18,7 +18,7 @@
 
 package com.sasha.asuna.mod.mixin.client;
 
-import com.sasha.asuna.mod.feature.impl.PigControlFeature;
+import com.sasha.asuna.mod.feature.impl.movement.PigControlFeature;
 import com.sasha.asuna.mod.misc.Manager;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityPig;

@@ -18,8 +18,8 @@
 
 package com.sasha.asuna.mod.mixin.client;
 
-import com.sasha.asuna.mod.feature.impl.FluidInteractFeature;
-import com.sasha.asuna.mod.feature.impl.JesusFeature;
+import com.sasha.asuna.mod.feature.impl.movement.FluidInteractFeature;
+import com.sasha.asuna.mod.feature.impl.movement.JesusFeature;
 import com.sasha.asuna.mod.misc.Manager;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.state.IBlockState;
@@ -31,7 +31,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import static com.sasha.asuna.mod.feature.impl.JesusFeature.WATER_JESUS_AABB;
+import static com.sasha.asuna.mod.feature.impl.movement.JesusFeature.WATER_JESUS_AABB;
 import static net.minecraft.block.Block.NULL_AABB;
 
 @Mixin(value = BlockLiquid.class, priority = 999)

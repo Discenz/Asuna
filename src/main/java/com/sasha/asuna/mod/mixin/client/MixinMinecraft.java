@@ -26,7 +26,7 @@ import com.sasha.asuna.mod.events.client.ClientGetMusicTypeEvent;
 import com.sasha.asuna.mod.events.client.ClientMouseClickEvent;
 import com.sasha.asuna.mod.events.client.ClientScreenChangedEvent;
 import com.sasha.asuna.mod.events.playerclient.PlayerBlockPlaceEvent;
-import com.sasha.asuna.mod.feature.impl.CPUControlFeature;
+import com.sasha.asuna.mod.feature.impl.misc.CPUControlFeature;
 import com.sasha.asuna.mod.misc.Manager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.MusicTicker;
