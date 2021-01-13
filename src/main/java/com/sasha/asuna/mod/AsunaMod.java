@@ -34,6 +34,7 @@ import com.sasha.asuna.mod.exception.AsunaException;
 import com.sasha.asuna.mod.feature.AsunaDiscordPresense;
 import com.sasha.asuna.mod.feature.IAsunaFeature;
 import com.sasha.asuna.mod.feature.impl.*;
+import com.sasha.asuna.mod.feature.impl.chat.ChatSuffix;
 import com.sasha.asuna.mod.friend.FriendManager;
 import com.sasha.asuna.mod.gui.fonts.FontManager;
 import com.sasha.asuna.mod.gui.hud.AsunaHUD;
@@ -267,6 +268,7 @@ public class AsunaMod implements SimpleListener {
     @Deprecated
     private void registerFeaturesOld() {
         Manager.Feature.featureRegistry.clear();
+        Manager.Feature.registerFeature(new ChatSuffix());
         Manager.Feature.registerFeature(new XrayFeature());
         Manager.Feature.registerFeature(new FlightFeature());
         Manager.Feature.registerFeature(new WireframeFeature());
