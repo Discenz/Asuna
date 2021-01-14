@@ -34,7 +34,7 @@ import static com.sasha.asuna.mod.gui.hud.AsunaHUD.sWidth;
 
 public class RenderableFeatureList extends RenderableObject {
     public RenderableFeatureList() {
-        super("Featurelist", ScreenCornerPos.RIGHTBOTTOM,
+        super("Featurelist", ScreenCornerPos.RIGHTTOP,
                 Manager.Feature.findFeature(FeaturelistRenderableFeature.class));
 
     }

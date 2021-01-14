@@ -24,30 +24,22 @@ import com.sasha.asuna.mod.feature.AsunaCategory;
 import com.sasha.asuna.mod.feature.IAsunaTickableFeature;
 import com.sasha.asuna.mod.feature.annotation.FeatureInfo;
 import com.sasha.asuna.mod.feature.option.AsunaFeatureOption;
-import com.sasha.asuna.mod.feature.option.AsunaFeatureOptionBehaviour;
 import net.minecraft.client.Minecraft;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.item.EntityEnderCrystal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
-import net.minecraft.inventory.ClickType;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
 import net.minecraft.util.CombatRules;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.Explosion;
 import org.lwjgl.input.Mouse;
 
-
-import java.util.Objects;
 
 import static com.sasha.asuna.mod.feature.impl.combat.KillauraFeature.rotateTowardsEntity;
 
@@ -60,19 +52,40 @@ public class CrystalAuraFeature extends AbstractAsunaTogglableFeature implements
         super("CrystalAura", AsunaCategory.COMBAT, new AsunaFeatureOption<>("NoSuicide", false));
     }
 
-    private float calculateExplosionDamage(EntityLivingBase entity, EntityEnderCrystal e) {
-        return 0;
+    //Calculate damage done to a player by a EnderCrystal
+    private float calculateDamage(EntityEnderCrystal crystal, EntityPlayer player) {
+        //Explosion Size: Double the End Crystal explosion strength
+        float explosionScale = 2.0F * 6.0F;
+        //Adjusted for distance
+        double distancedExplosionScale = player.getDistance(crystal) / (double) explosionScale;
+        //Block density and scale
+        double density = player.world.getBlockDensity(crystal.getPositionVector(), player.getEntityBoundingBox());
+        double densityScale = (1.0D - distancedExplosionScale) * density;
+
+        //Unscaled damage
+        float damage = (float) ((int) ((densityScale * densityScale + densityScale) / 2.0D * 7.0D * (double) explosionScale + 1.0D));
+
+        //Adjust for difficulty
+        damage *= 0.5f * Minecraft.getMinecraft().world.getDifficulty().getId();
+
+        //Adjust for blast reduction
+        damage = CombatRules.getDamageAfterAbsorb(damage, (float) player.getTotalArmorValue(), (float) player.getEntityAttribute(SharedMonsterAttributes.ARMOR_TOUGHNESS).getAttributeValue());
+
+        Explosion explosion = new Explosion(Minecraft.getMinecraft().world, null, crystal.posX, crystal.posY, crystal.posZ, 6.0F, false, true);
+
+        damage *= (1.0F - MathHelper.clamp(EnchantmentHelper.getEnchantmentModifierDamage(player.getArmorInventoryList(), DamageSource.causeExplosionDamage(explosion)), 0.0F, 20.0F) / 25.0F);
+
+        damage = Math.max(damage - player.getAbsorptionAmount(), 0.0F);
+
+        return damage;
     }
 
-    public int getTotemCount () {
-        int i = 0;
-        for (int x = 0; x <= 44; x++) {
-            ItemStack stack = AsunaMod.minecraft.player.inventory.getStackInSlot(x);
-            if (stack.getItem() == Items.TOTEM_OF_UNDYING) {
-                i++;
-            }
-        }
-        return i;
+    //Checks if totem is held. Used for NoSuicide
+    public boolean totemSelected() {
+        ItemStack offhand = AsunaMod.minecraft.player.getHeldItem(EnumHand.OFF_HAND);
+        ItemStack mainHand = AsunaMod.minecraft.player.getHeldItem(EnumHand.MAIN_HAND);
+        if(offhand.getItem() == Items.TOTEM_OF_UNDYING || mainHand.getItem() == Items.TOTEM_OF_UNDYING) return true;
+        return false;
     }
 
     @Override
@@ -83,7 +96,7 @@ public class CrystalAuraFeature extends AbstractAsunaTogglableFeature implements
                 if (AsunaMod.minecraft.player.getDistance(e) >= 3.8f) continue;
                 if (!e.isEntityAlive()) continue;
                 // Do not hit crystal if it will kill you
-                if (this.getOption("NoSuicide") && getTotemCount() == 0 && calculateExplosionDamage(Minecraft.getMinecraft().player, (EntityEnderCrystal) e) > AsunaMod.minecraft.player.getHealth())
+                if (this.getOption("NoSuicide") && !totemSelected() && calculateDamage((EntityEnderCrystal) e, Minecraft.getMinecraft().player) > AsunaMod.minecraft.player.getHealth())
                     continue;
                 //Stop breaking if eating or whatnot
                 if (Mouse.isButtonDown(1) && AsunaMod.minecraft.player.inventory.getCurrentItem().getItem() != Items.END_CRYSTAL) {

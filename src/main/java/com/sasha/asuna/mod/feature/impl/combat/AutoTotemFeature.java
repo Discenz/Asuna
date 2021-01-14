@@ -47,7 +47,7 @@ public class AutoTotemFeature extends AbstractAsunaTogglableFeature implements I
         boolean swapOffhand = (offhand.getItem() != Items.TOTEM_OF_UNDYING);
 
         int i = 0;
-        for (int x = 0; x <= 44; x++) {
+        for (int x = 0; x <= 45; x++) {
             ItemStack stack = AsunaMod.minecraft.player.inventory.getStackInSlot(x);
             if (stack.getItem() == Items.TOTEM_OF_UNDYING) {
                 i++;
