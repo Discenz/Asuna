@@ -43,24 +43,23 @@ public class AutoTotemFeature extends AbstractAsunaTogglableFeature implements I
         if (!this.isEnabled())
             return;
         ItemStack offhand = AsunaMod.minecraft.player.getItemStackFromSlot(EntityEquipmentSlot.OFFHAND);
+
+        boolean swapOffhand = (offhand.getItem() != Items.TOTEM_OF_UNDYING);
+
         int i = 0;
-        for (int x = 9; x <= 44; x++) {
+        for (int x = 0; x <= 44; x++) {
             ItemStack stack = AsunaMod.minecraft.player.inventory.getStackInSlot(x);
             if (stack.getItem() == Items.TOTEM_OF_UNDYING) {
                 i++;
-            }
-        }
-        this.setSuffix(i + "");
-        if (offhand.getItem() != Items.TOTEM_OF_UNDYING) {
-            for (int x = 9; x <= 44; x++) {
-                ItemStack stack = AsunaMod.minecraft.player.inventory.getStackInSlot(x);
-                if (stack.getItem() == Items.TOTEM_OF_UNDYING && AsunaMod.minecraft.currentScreen == null /* don't move totems if the inventory is open */) {
+                if (AsunaMod.minecraft.currentScreen == null && swapOffhand) {
+                    swapOffhand = false;
                     AsunaMod.minecraft.playerController.windowClick(0, x, 0, ClickType.PICKUP, AsunaMod.minecraft.player);
                     AsunaMod.minecraft.playerController.windowClick(0, 45, 0, ClickType.PICKUP, AsunaMod.minecraft.player);
-                    break;
                 }
             }
         }
+
+        this.setSuffix(i + "");
 
     }
 }
