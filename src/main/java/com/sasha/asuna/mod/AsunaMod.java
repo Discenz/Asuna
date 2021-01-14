@@ -273,7 +273,7 @@ public class AsunaMod implements SimpleListener {
     @Deprecated
     private void registerFeaturesOld() {
         Manager.Feature.featureRegistry.clear();
-        Manager.Feature.registerFeature(new ChatSuffix());
+        Manager.Feature.registerFeature(new ChatSuffixFeature());
         Manager.Feature.registerFeature(new XrayFeature());
         Manager.Feature.registerFeature(new FlightFeature());
         Manager.Feature.registerFeature(new WireframeFeature());
@@ -291,7 +291,7 @@ public class AsunaMod implements SimpleListener {
         Manager.Feature.registerFeature(new TracersFeature());
         Manager.Feature.registerFeature(new AntiHungerFeature());
         Manager.Feature.registerFeature(new ClickGUIFeature());
-        Manager.Feature.registerFeature(new NightVisionFeature());
+        Manager.Feature.registerFeature(new FullbrightFeature());
         Manager.Feature.registerFeature(new NoSlowFeature());
         Manager.Feature.registerFeature(new AnnouncerFeature());
         Manager.Feature.registerFeature(new AFKFishFeature());
@@ -367,6 +367,7 @@ public class AsunaMod implements SimpleListener {
     }
 
     private void registerCommands() throws Exception {
+        COMMAND_PROCESSOR.register(GammaCommand.class);
         COMMAND_PROCESSOR.register(AboutCommand.class);
         COMMAND_PROCESSOR.register(ToggleCommand.class);
         COMMAND_PROCESSOR.register(HelpCommand.class);

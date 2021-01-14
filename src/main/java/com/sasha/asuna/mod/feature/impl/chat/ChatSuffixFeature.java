@@ -39,12 +39,16 @@ import java.util.Map;
 import static com.sasha.asuna.mod.AsunaMod.COMMAND_PROCESSOR;
 import static com.sasha.asuna.mod.AsunaMod.logWarn;
 
+/**
+ * Created by Discens on 14/01/2021 at 11:20 AM
+ **/
+
 @FeatureInfo(description = "Automatically ignore players that are spamming in chat.")
-public class ChatSuffix extends AbstractAsunaTogglableFeature implements SimpleListener{
+public class ChatSuffixFeature extends AbstractAsunaTogglableFeature implements SimpleListener{
 
     private String suffix;
 
-    public ChatSuffix() {
+    public ChatSuffixFeature() {
         super("ChatSuffix", AsunaCategory.CHAT);
         suffix = " | " + AsunaMod.NAME;
     }

@@ -55,8 +55,8 @@ public class XrayFeature extends AbstractAsunaTogglableFeature {
 
     @Override
     public void onEnable() {
-        if (!Manager.Feature.isFeatureEnabled(NightVisionFeature.class)) {
-            Manager.Feature.findFeature(NightVisionFeature.class).setState(true, true);
+        if (!Manager.Feature.isFeatureEnabled(FullbrightFeature.class)) {
+            Manager.Feature.findFeature(FullbrightFeature.class).setState(true, true);
             wasNightVisionsOff = true;
         }
         AsunaMod.minecraft.renderGlobal.loadRenderers();
@@ -65,7 +65,7 @@ public class XrayFeature extends AbstractAsunaTogglableFeature {
     @Override
     public void onDisable() {
         if (wasNightVisionsOff) {
-            Manager.Feature.findFeature(NightVisionFeature.class).setState(false, true);
+            Manager.Feature.findFeature(FullbrightFeature.class).setState(false, true);
             wasNightVisionsOff = false;
         }
         AsunaMod.minecraft.renderGlobal.loadRenderers();

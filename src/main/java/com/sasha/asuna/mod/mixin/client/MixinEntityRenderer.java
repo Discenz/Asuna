@@ -148,7 +148,7 @@ public abstract class MixinEntityRenderer {
 
     @Inject(method = "updateLightmap", at = @At(value = "FIELD", target = "Lnet/minecraft/client/renderer/EntityRenderer;lightmapColors:[I"), cancellable = true)
     public void updateLightmap(float partialTicks, CallbackInfo info) {
-        if (!Manager.Feature.isFeatureEnabled(NightVisionFeature.class)) return;
+        if (!Manager.Feature.isFeatureEnabled(FullbrightFeature.class)) return;
         for (int i = 0; i < 256; ++i) this.lightmapColors[i] = -16777216 | -20 << 16 | -20 << 8 | -20;
         this.lightmapTexture.updateDynamicTexture();
         this.lightmapUpdateNeeded = false;
