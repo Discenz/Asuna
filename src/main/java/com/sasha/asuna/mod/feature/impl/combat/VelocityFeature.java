@@ -36,10 +36,10 @@ import net.minecraft.network.play.server.SPacketExplosion;
  * Created by Sasha at 7:59 PM on 9/2/2018
  */
 @FeatureInfo(description = "Reduce or completely ignore knockback")
-public class KnockbackSuppressFeature extends AbstractAsunaTogglableFeature
+public class VelocityFeature extends AbstractAsunaTogglableFeature
         implements SimpleListener, IAsunaTickableFeature {
-    public KnockbackSuppressFeature() {
-        super("KnockbackSuppress", AsunaCategory.COMBAT,
+    public VelocityFeature() {
+        super("Velocity", AsunaCategory.COMBAT,
                 new AsunaFeatureOptionBehaviour(true),
                 new AsunaFeatureOption<>("Ignore", true),
                 new AsunaFeatureOption<>("Reduce", false));

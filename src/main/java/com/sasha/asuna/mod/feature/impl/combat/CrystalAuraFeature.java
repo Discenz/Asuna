@@ -37,6 +37,7 @@ import net.minecraft.util.CombatRules;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.Explosion;
 import org.lwjgl.input.Mouse;
 
@@ -53,13 +54,15 @@ public class CrystalAuraFeature extends AbstractAsunaTogglableFeature implements
     }
 
     //Calculate damage done to a player by a EnderCrystal
-    private float calculateDamage(EntityEnderCrystal crystal, EntityPlayer player) {
+    private float calculateDamage(double x, double y, double z, EntityPlayer player) {
+        //Vec3d of Crystal
+        Vec3d vec3d = new Vec3d(x,y,z);
         //Explosion Size: Double the End Crystal explosion strength
         float explosionScale = 2.0F * 6.0F;
         //Adjusted for distance
-        double distancedExplosionScale = player.getDistance(crystal) / (double) explosionScale;
+        double distancedExplosionScale = player.getDistance(x,y,z) / (double) explosionScale;
         //Block density and scale
-        double density = player.world.getBlockDensity(crystal.getPositionVector(), player.getEntityBoundingBox());
+        double density = player.world.getBlockDensity(vec3d, player.getEntityBoundingBox());
         double densityScale = (1.0D - distancedExplosionScale) * density;
 
         //Unscaled damage
@@ -71,13 +74,17 @@ public class CrystalAuraFeature extends AbstractAsunaTogglableFeature implements
         //Adjust for blast reduction
         damage = CombatRules.getDamageAfterAbsorb(damage, (float) player.getTotalArmorValue(), (float) player.getEntityAttribute(SharedMonsterAttributes.ARMOR_TOUGHNESS).getAttributeValue());
 
-        Explosion explosion = new Explosion(Minecraft.getMinecraft().world, null, crystal.posX, crystal.posY, crystal.posZ, 6.0F, false, true);
+        Explosion explosion = new Explosion(Minecraft.getMinecraft().world, null, x, y, z, 6.0F, false, true);
 
         damage *= (1.0F - MathHelper.clamp(EnchantmentHelper.getEnchantmentModifierDamage(player.getArmorInventoryList(), DamageSource.causeExplosionDamage(explosion)), 0.0F, 20.0F) / 25.0F);
 
         damage = Math.max(damage - player.getAbsorptionAmount(), 0.0F);
 
         return damage;
+    }
+
+    private float calculateDamage(EntityEnderCrystal crystal, EntityPlayer player) {
+        return calculateDamage(crystal.posX, crystal.posY, crystal.posZ, player);
     }
 
     //Checks if totem is held. Used for NoSuicide
@@ -88,6 +95,8 @@ public class CrystalAuraFeature extends AbstractAsunaTogglableFeature implements
         return false;
     }
 
+
+
     @Override
     public void onTick() {
         if (this.isEnabled()) {
@@ -95,27 +104,20 @@ public class CrystalAuraFeature extends AbstractAsunaTogglableFeature implements
                 if (!(e instanceof EntityEnderCrystal)) continue;
                 if (AsunaMod.minecraft.player.getDistance(e) >= 3.8f) continue;
                 if (!e.isEntityAlive()) continue;
+
+                EntityEnderCrystal crystal = (EntityEnderCrystal) e;
+
                 // Do not hit crystal if it will kill you
-                if (this.getOption("NoSuicide") && !totemSelected() && calculateDamage((EntityEnderCrystal) e, Minecraft.getMinecraft().player) > AsunaMod.minecraft.player.getHealth())
+                if (this.getOption("NoSuicide") && !totemSelected() && calculateDamage(crystal, Minecraft.getMinecraft().player) > AsunaMod.minecraft.player.getHealth())
                     continue;
                 //Stop breaking if eating or whatnot
                 if (Mouse.isButtonDown(1) && AsunaMod.minecraft.player.inventory.getCurrentItem().getItem() != Items.END_CRYSTAL) {
                     return;
                 }
-                float yaw = AsunaMod.minecraft.player.rotationYaw;
-                float pitch = AsunaMod.minecraft.player.rotationPitch;
-                float yawHead = AsunaMod.minecraft.player.rotationYawHead;
-                boolean wasSprinting = AsunaMod.minecraft.player.isSprinting();
-                rotateTowardsEntity(e);
-                AsunaMod.minecraft.player.setSprinting(false);
-                AsunaMod.minecraft.playerController.attackEntity(AsunaMod.minecraft.player, e);
+
+                AsunaMod.minecraft.playerController.attackEntity(AsunaMod.minecraft.player, crystal);
                 AsunaMod.minecraft.player.swingArm(EnumHand.MAIN_HAND);
-                AsunaMod.minecraft.player.rotationYaw = yaw;
-                AsunaMod.minecraft.player.rotationPitch = pitch;
-                AsunaMod.minecraft.player.rotationYawHead = yawHead;
-                if (wasSprinting) {
-                    AsunaMod.minecraft.player.setSprinting(true);
-                }
+
                 break;
             }
         }

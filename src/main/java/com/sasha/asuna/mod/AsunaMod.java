@@ -328,7 +328,7 @@ public class AsunaMod implements SimpleListener {
         Manager.Feature.registerFeature(new BlinkFeature()); // No clue if this is what blink is suppposed to do... i dont pvp...
         Manager.Feature.registerFeature(new JoinLeaveMessagesFeature());
         Manager.Feature.registerFeature(new CraftInventoryFeature());
-        Manager.Feature.registerFeature(new KnockbackSuppressFeature());
+        Manager.Feature.registerFeature(new VelocityFeature());
         Manager.Feature.registerFeature(new EquipmentDamageRenderableFeature());
         Manager.Feature.registerFeature(new DesktopNotificationsFeature());
         Manager.Feature.registerFeature(new CPUControlFeature());
