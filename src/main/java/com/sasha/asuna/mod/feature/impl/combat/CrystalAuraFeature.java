@@ -115,8 +115,16 @@ public class CrystalAuraFeature extends AbstractAsunaTogglableFeature implements
                     return;
                 }
 
+                float yaw = AsunaMod.minecraft.player.rotationYaw;
+                float pitch = AsunaMod.minecraft.player.rotationPitch;
+                float yawHead = AsunaMod.minecraft.player.rotationYawHead;
+
                 AsunaMod.minecraft.playerController.attackEntity(AsunaMod.minecraft.player, crystal);
                 AsunaMod.minecraft.player.swingArm(EnumHand.MAIN_HAND);
+
+                AsunaMod.minecraft.player.rotationYaw = yaw;
+                AsunaMod.minecraft.player.rotationPitch = pitch;
+                AsunaMod.minecraft.player.rotationYawHead = yawHead;
 
                 break;
             }
